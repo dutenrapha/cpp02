@@ -6,7 +6,7 @@
 /*   By: rdutenke <rdutenke@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 23:09:17 by rdutenke          #+#    #+#             */
-/*   Updated: 2022/02/07 00:36:52 by rdutenke         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:49:47 by rdutenke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@ Fixed::Fixed(void)
 
 Fixed::Fixed(int const num)
 {
-	
+	std::cout << "Int constructor called"<< std::endl;
+	this->raw = num << this->fractional;
 	return ;
 }
 
 Fixed::Fixed(float const num)
 {
+	std::cout << "Float constructor called"<< std::endl;
+	this->raw = roundf(num * (1 << this->fractional));
 	return ;
 }
 
@@ -53,20 +56,29 @@ Fixed & Fixed::operator=(Fixed const & rhs)
 
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called"<< std::endl;
 	return(this->raw);
 }
 
 void Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called"<< std::endl;
 	this->raw = raw;
 	return ;
+}
+
+float Fixed::toFloat( void ) const
+{
+	return	((float)(this->raw / (float)(1 << this->fractional)));
+}
+
+int Fixed::toInt( void ) const
+{
+	return(this->raw >> this->fractional);
 }
 
 int const	Fixed::fractional = 8;
 
 std::ostream & operator<<(std::ostream & o, Fixed const & src)
 {
-	
+	o << src.toFloat();
+	return(o);
 }

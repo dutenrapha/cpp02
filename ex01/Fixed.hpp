@@ -6,13 +6,14 @@
 /*   By: rdutenke <rdutenke@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:45:23 by rdutenke          #+#    #+#             */
-/*   Updated: 2022/02/07 00:36:42 by rdutenke         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:47:00 by rdutenke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef Fixed_H
 #define  Fixed_H
 #include <iostream>
+#include <cmath>
 
 class Fixed 
 {
@@ -31,7 +32,7 @@ public:
 	int toInt(void) const;
 
 private:
-	int				raw;
+	int					raw;
 	static const int	fractional;
 };
 
